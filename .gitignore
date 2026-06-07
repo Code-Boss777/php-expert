@@ -1,0 +1,6 @@
+
+.idea/
+.vscode/
+
+tmp/smarty/templates_c/*
+tmp/smarty/cache/*
