@@ -29,10 +29,10 @@ $actionName = isset($_GET['action']) ? $_GET['action'] : 'index';
 loadPage($smarty, $controllerName, $actionName) . '<br/>';
 
 //цикл Foreach 
-$numbers = range(1, 10);
-foreach($numbers as $number) {
-    echo $number . '<br/>';
-}
+// $numbers = 1, 10);range(
+// foreach($numbers as $number) {
+//     echo $number . '<br/>';
+// }
 //цикл while
 // $i = 1;
 // while($i<=10) {
@@ -41,8 +41,8 @@ foreach($numbers as $number) {
 // }
 
 //цикла Do while
-// $i=1; 
-// do {
-//     echo $i . '<br/>';
-//     $i++;
-// } while ($i<=10);
+$i=1; 
+do {
+    echo $i . '<br/>';
+    $i++;
+} while ($i<=10);

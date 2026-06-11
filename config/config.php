@@ -36,8 +36,9 @@ spl_autoload_register(function ($class) {
     }
 });
 $smarty = new \Smarty\Smarty();
+// $smarty->assign('TemplateWebPath', TemplateWebPath);
 // === 3. НАСТРАИВАЕМ РАБОЧИЕ ПАПКИ ===
 $smarty->setTemplateDir(TemplatePrefix);
 $smarty->setCompileDir('../tmp/smarty/templates_c');
 $smarty->setCacheDir('../tmp/smarty/cache');
-$smarty->assign('templateWebPath', TemplateWebPath);
+$smarty->assign('TemplateWebPath', TemplateWebPath);
