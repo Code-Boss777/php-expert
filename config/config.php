@@ -7,10 +7,10 @@ define('PathPostfix', 'Controller.php');
 //используемый шаблонизатор 
 $template = 'default';
 //пути к файлам шаблонов
-define('TemplatePrefix', "../views/$template/");
+define('TemplatePrefix', dirname(__DIR__) . "/www/views/{$template}/");
 define('TemplatePostfix', '.tpl');
 //Пути в файлам шаблонов в вебространстве
-define('TemplateWebPath', "/views/$template/");
+define('TemplateWebPath', "/templates/{$template}/");
 //Инициализаци шаблонизатора Smarty
 // 1. Подключаем основной файл  Smarty (через папку src)
 // require_once('../library/smarty-5.5.1/src/Autoloader.php');
@@ -39,6 +39,9 @@ $smarty = new \Smarty\Smarty();
 // $smarty->assign('TemplateWebPath', TemplateWebPath);
 // === 3. НАСТРАИВАЕМ РАБОЧИЕ ПАПКИ ===
 $smarty->setTemplateDir(TemplatePrefix);
-$smarty->setCompileDir('../tmp/smarty/templates_c');
+$smarty->setCompileDir('../tmp/smarty/templates_new');
 $smarty->setCacheDir('../tmp/smarty/cache');
 $smarty->assign('TemplateWebPath', TemplateWebPath);
+//отключаем кэширование smarty
+$smarty->setCompileCheck(true);
+$smarty->setForceCompile(true);

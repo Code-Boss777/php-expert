@@ -1,7 +1,8 @@
+проверка связи 
 <html>
     <head>
     <title>{$pageTitle}</title>
-    <link rel="stylesheet" href="{$TemplateWebPath}css/main.css" type="text/css">
+    <link rel="stylesheet" href="{$TemplateWebPath}css/myshopmain.css" type="text/css">
     </head>
     <body>
     <div id="header">
