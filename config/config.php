@@ -35,6 +35,7 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+include_once 'db.php';
 $smarty = new \Smarty\Smarty();
 // $smarty->assign('TemplateWebPath', TemplateWebPath);
 // === 3. НАСТРАИВАЕМ РАБОЧИЕ ПАПКИ ===
