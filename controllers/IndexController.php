@@ -16,8 +16,9 @@ function indexAction($smarty){
 
 //подключаем модели
 $rsCategories = getAllMainCatsWithChildren();
-d($rsCategories);
+
     $smarty->assign('pageTitle', 'Главная страница сайта');
+    $smarty->assign('rsCategories', $rsCategories);
 
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'index');

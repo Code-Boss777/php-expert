@@ -9,9 +9,6 @@ function getAllMainCatsWithChildren() {
            WHERE parent_id = 0';
            $rs = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
            return $rs;
-           $smartyRs = array();
-           $smartyRS[] = $rs;
-           return $smartyRS;
 }
 
 

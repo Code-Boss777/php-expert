@@ -1,6 +1,7 @@
 
 <?php
 include_once '../config/config.php';
+include_once '../config/db.php'; 
 include_once '../library/mainFunction.php';
 //http://localhost:8080/?controller=index&action=test  вводим параметр контроллера в браузере
 //определяем какой контроллер будет работать
