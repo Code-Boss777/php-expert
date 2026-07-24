@@ -21,3 +21,4 @@ echo '</pre>';
 
 // if($die) die;
 }
+$smartyRs = $stmt->fetchAll(PDO::FETCH_ASSOC);
