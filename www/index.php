@@ -1,5 +1,9 @@
 
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 include_once '../config/config.php';
 include_once '../config/db.php'; 
 include_once '../library/mainFunction.php';
@@ -42,8 +46,8 @@ loadPage($smarty, $controllerName, $actionName) . '<br/>';
 // }
 
 //цикла Do while
-$i=1; 
-do {
-    echo $i . '<br/>';
-    $i++;
-} while ($i<=10);
+// $i=1; 
+// do {
+//     echo $i . '<br/>';
+//     $i++;
+// } while ($i<=10);

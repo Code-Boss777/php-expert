@@ -28,4 +28,14 @@ function getChildrenForCat($catId) {
     $rs = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     return $rs;
 }
+function getCatById(int $catId) {
+    global $db; // Наше глобальное подключение PDO к базе данных
+
+    $sql = "SELECT * FROM categories WHERE id = :catId";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute(['catId' => $catId]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 

@@ -1,16 +1,22 @@
-<div id="leftColumn>
-<div id=leftMenu>
-    <div class="menuCaption">Меню</div>
-    {foreach from=$rsCategories item=item}
-    <a href="#">{$item['name']}</a><br/>
-    {if isset($item['children'])}
-        {foreach from=$item['children'] item=itemChild}
-            <span style="padding-left: 15px;">-- </span>
-            <a href="#">{$itemChild['name']}</a><br/>
-    {/foreach}
-{/if}
-{/foreach}
+{* Левая колонка - Меню категорий *}
+<div id="leftColumn">
+    <div id="leftMenu">
+        <div class="menuCaption">Меню:</div>
+        
+        {foreach from=$rsCategories item=item}
+            <!-- Главная категория (например, Телефоны) -->
+            <a href="/?controller=category&id={$item['id']}">{$item['name']}</a><br />
+            
+            <!-- Если у категории есть дочерние элементы, запускаем вложенный цикл -->
+            {if isset($item['children'])}
+                {foreach from=$item['children'] item=itemChild}
+                    <span style="padding-left: 15px;">-- </span>
+                    <!-- ИСПРАВЛЕНО: Передаем ID именно подкатегории ($itemChild['id']) -->
+                    <a href="/?controller=category&id={$itemChild['id']}">{$itemChild['name']}</a><br />
+                {/foreach}
+            {/if}
+            
+        {/foreach}
+        
+    </div>
 </div>
-</div>
-    <div id=centerColumn>
- 

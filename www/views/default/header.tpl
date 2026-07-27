@@ -1,4 +1,4 @@
-проверка связи 
+//проверка связи
 <html>
     <head>
     <title>{$pageTitle}</title>
@@ -11,6 +11,5 @@
 
     {include file = 'leftcolumn.tpl'}
 
-    <div id="centerColumn">
 
-    centerColumn
+    //centerColumn
