@@ -1,1 +1,24 @@
+# Устанавливаем кодировку по умолчанию
 AddDefaultCharset utf-8
+
+# Запрещаем просмотр содержимого папок, если нет index.php
+Options +FollowSymLinks
+Options -Indexes
+DirectoryIndex index.php
+
+# Включаем движок перенаправлений URL
+RewriteEngine On
+RewriteBase /
+
+# 1. Правило для КАТЕГОРИЙ: превращает /category/3/ скрытно в /?controller=category&id=3
+RewriteRule ^category/([0-9]+)/$ ?controller=category&id=$1 [QSA,L]
+
+# 2. Правило для ТОВАРОВ: превращает /product/12/ скрытно в /?controller=product&id=12
+RewriteRule ^product/([0-9]+)/$ ?controller=product&id=$1 [QSA,L]
+
+# 3. Изолируем реальные файлы (картинки, стили, скрипты), чтобы сервер их не трогал
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Все остальные запросы отправляем на главный index.php
+RewriteRule ^(.*)$ index.php [L,QSA]
