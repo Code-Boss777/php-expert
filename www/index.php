@@ -1,4 +1,10 @@
 <?php
+//стартуем сессию корзины 
+session_start();
+if (!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = [];
+}
+
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
