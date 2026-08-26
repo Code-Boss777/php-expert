@@ -3,6 +3,7 @@
 
 
 //подключаем модели 
+include_once '../models/CartModels.php';
 include_once '../models/CategoriesModel.php';
 include_once '../models/ProductModels.php';
 
@@ -19,6 +20,8 @@ function indexAction($smarty){
 //подключаем модели
 $rsCategories = getAllMainCatsWithChildren();
 $rsProducts = getLastProducts(16);
+$cartCount = getCartCount();
+$smarty->assign('cartCount', $cartCount);
 
     $smarty->assign('pageTitle', 'Главная страница сайта');
     $smarty->assign('rsCategories', $rsCategories);

@@ -1,15 +1,12 @@
 
 <?php
-//файл настроек 
-//Константа для обращения к контроллерам
 define('PathPrefix', '../controllers/');
 define('PathPostfix', 'Controller.php');
-//используемый шаблонизатор 
+
+// Пути к шаблонам (относительно папки www)
 $template = 'default';
-//пути к файлам шаблонов
-define('TemplatePrefix', dirname(__DIR__) . "/www/views/{$template}/");
+define('TemplatePrefix', "../www/views/{$template}/"); // Указываем путь к папке www
 define('TemplatePostfix', '.tpl');
-//Пути в файлам шаблонов в вебространстве
 define('TemplateWebPath', "/templates/{$template}/");
 //Инициализаци шаблонизатора Smarty
 // 1. Подключаем основной файл  Smarty (через папку src)

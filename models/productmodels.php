@@ -23,3 +23,11 @@ function getProductsByCat(int $catId): array {
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+//получаем данныые продукта по id
+function getProductById($itemId, $db) {
+    $itemId = intval($itemId);
+    $sql = "SELECT * FROM products WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute(['id' => $itemId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
