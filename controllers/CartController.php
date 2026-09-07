@@ -1,4 +1,9 @@
 <?php
+
+// Подключаем модели
+include_once '../models/ProductModels.php';
+include_once '../models/CartModels.php';
+
 /**
  * Добавление товара в корзину (AJAX)
  * 
@@ -8,8 +13,8 @@
 function addtocartAction() {
     global $db;
     
-    // 1. Получаем ID товара из POST-запроса (а не GET!)
-    $itemId = isset($_POST['id']) ? intval($_POST['id']) : 0;
+    // 1. Получаем ID товара из GET-запроса
+    $itemId = isset($_GET['id']) ? intval($_GET['id']) : 0;
     
     if ($itemId <= 0) {
         echo json_encode(['success' => false, 'message' => 'Неверный ID товара']);
@@ -32,7 +37,7 @@ function addtocartAction() {
     // 5. Отправляем JSON-ответ
     echo json_encode([
         'success' => true,
-        'cartCount' => $cartCount,
+        'cartCntItems' => $cartCount,
         'message' => 'Товар добавлен в корзину'
     ]);
 }

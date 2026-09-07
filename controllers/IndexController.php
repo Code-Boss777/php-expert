@@ -21,7 +21,7 @@ function indexAction($smarty){
 $rsCategories = getAllMainCatsWithChildren();
 $rsProducts = getLastProducts(16);
 $cartCount = getCartCount();
-$smarty->assign('cartCount', $cartCount);
+$smarty->assign('cartCntItems', $cartCount);
 
     $smarty->assign('pageTitle', 'Главная страница сайта');
     $smarty->assign('rsCategories', $rsCategories);

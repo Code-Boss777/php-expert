@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-09-04 07:17:07
+/* Smarty version 5.5.1, created on 2026-09-07 13:09:47
   from 'file:header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6a9a54535c54d2_24323512',
+  'unifunc' => 'content_6a9e9b7b99d4e1_45858528',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3198b13a0cbe62ff8a95f8c112773353ef14889b' => 
     array (
       0 => 'header.tpl',
-      1 => 1787740610,
+      1 => 1788778862,
       2 => 'file',
     ),
   ),
@@ -21,15 +21,21 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:leftcolumn.tpl' => 1,
   ),
 ))) {
-function content_6a9a54535c54d2_24323512 (\Smarty\Template $_smarty_tpl) {
+function content_6a9e9b7b99d4e1_45858528 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
-?>//проверка связи
+?>
 <html>
     <head>
     <title><?php echo $_smarty_tpl->getValue('pageTitle');?>
 </title>
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('TemplateWebPath');?>
 css/myshopmain.css" type="text/css">
+    <?php echo '<script'; ?>
+ src="/js/jquery-1.7.1.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="/js/main.js"><?php echo '</script'; ?>
+>
     </head>
     <body>
     <div id="header">
@@ -37,15 +43,12 @@ css/myshopmain.css" type="text/css">
     <?php echo '<script'; ?>
  src="/js/jquery-1.7.1.min.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
- src="/js/main.js"><?php echo '</script'; ?>
->
     </div>
 
     <?php $_smarty_tpl->renderSubTemplate('file:leftcolumn.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
 
 
-    //centerColumn
+
 <?php }
 }

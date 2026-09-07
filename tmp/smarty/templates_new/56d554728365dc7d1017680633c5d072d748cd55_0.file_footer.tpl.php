@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-09-04 07:17:07
+/* Smarty version 5.5.1, created on 2026-09-07 13:09:47
   from 'file:footer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6a9a54535fd593_34206608',
+  'unifunc' => 'content_6a9e9b7b9cef29_10863945',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a9a54535fd593_34206608 (\Smarty\Template $_smarty_tpl) {
+function content_6a9e9b7b9cef29_10863945 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?>   </div>
     <div id="footer">

@@ -1,31 +1,38 @@
+/**
+ * Добавление товара в корзину
+ * 
+ * @param integer itemId ID продукта
+ */
 function addToCart(itemId) {
     console.log("js - addToCart() вызвана для товара " + itemId);
     
-    // Блокируем кнопку
     var $button = $('#addCart_' + itemId);
-    $button.text('Добавляем...').prop('disabled', true);
+    if ($button.length) {
+        $button.text('Добавляем...').prop('disabled', true);
+    }
     
     $.ajax({
-        type: 'POST',
-        url: '/?controller=cart&action=addtocart',
-        data: { id: itemId },
+        type: 'GET',
+        url: '/cart/addtocart/' + itemId + '/',
         dataType: 'json',
         success: function(data) {
             if (data.success) {
-                // Обновляем счётчик в шапке
-                $('#cart-count').text(data.cartCount);
-                
-                // Меняем кнопку
-                $button.text('В корзине').removeClass('btn-primary').addClass('btn-success');
-                $('#removeCart_' + itemId).show();
+                $('#cartCntItems').html(data.cartCntItems);
+                if ($button.length) {
+                    $button.text('В корзине').removeClass('btn-primary').addClass('btn-success');
+                }
             } else {
                 alert('Ошибка: ' + data.message);
-                $button.text('Добавить в корзину').prop('disabled', false);
+                if ($button.length) {
+                    $button.text('Добавить в корзину').prop('disabled', false);
+                }
             }
         },
         error: function() {
             alert('Ошибка соединения с сервером');
-            $button.text('Добавить в корзину').prop('disabled', false);
+            if ($button.length) {
+                $button.text('Добавить в корзину').prop('disabled', false);
+            }
         }
     });
 }
