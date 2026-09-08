@@ -20,17 +20,22 @@ function indexAction($smarty) {
     
     // Передаём $db вторым аргументом
     $rsProduct = getProductById($itemId, $db);
-    
+
     if (!$rsProduct) {
         die('Товар с таким ID не найден');
     }
-    
+
     $rsCategories = getAllMainCatsWithChildren();
-    
+    $itemInCart = 0;
+    if (isset($_SESSION['cart'][$itemId])) {
+        $itemInCart = 1;
+    }
+    $smarty->assign('itemInCart', $itemInCart);
     $smarty->assign('pageTitle', $rsProduct['name']);
     $smarty->assign('rsProduct', $rsProduct);
     $smarty->assign('rsCategories', $rsCategories);
-    
+
+
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'product');
     loadTemplate($smarty, 'footer');

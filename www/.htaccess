@@ -10,17 +10,13 @@ DirectoryIndex index.php
 RewriteEngine On
 RewriteBase /
 
-# ===== 1. ПРАВИЛО ДЛЯ КОРЗИНЫ (САМОЕ ВАЖНОЕ, ДОЛЖНО БЫТЬ ПЕРВЫМ) =====
+# ===== 1. ПРАВИЛА ДЛЯ КОРЗИНЫ (ОБЯЗАТЕЛЬНО ПЕРВЫМИ) =====
 RewriteRule ^cart/addtocart/([0-9]+)/$ ?controller=cart&action=addtocart&id=$1 [QSA,L]
+RewriteRule ^cart/removefromcart/([0-9]+)/$ ?controller=cart&action=removefromcart&id=$1 [QSA,L]
 
 # ===== 2. УНИВЕРСАЛЬНЫЕ ПРАВИЛА =====
-# /controller/action/id/
 RewriteRule ^([a-z]+)/([a-z]+)/([0-9]+)/$ ?controller=$1&action=$2&id=$3 [QSA,L]
-
-# /controller/action/
 RewriteRule ^([a-z]+)/([a-z]+)/$ ?controller=$1&action=$2 [QSA,L]
-
-# /controller/id/
 RewriteRule ^([a-z]+)/([0-9]+)/$ ?controller=$1&id=$2 [QSA,L]
 
 # ===== 3. ИЗОЛИРУЕМ РЕАЛЬНЫЕ ФАЙЛЫ =====
