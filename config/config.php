@@ -1,7 +1,7 @@
 
 <?php
 define('PathPrefix', '../controllers/');
-define('PathPostfix', 'Controller.php');
+define('PathPostfix', 'Controller.php');        
 
 // Пути к шаблонам (относительно папки www)
 $template = 'default';
@@ -32,6 +32,8 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+// Подключаем глобальные функции Smarty
+require_once '../library/smarty-5.5.1/src/functions.php';
 include_once 'db.php';
 $smarty = new \Smarty\Smarty();
 // $smarty->assign('TemplateWebPath', TemplateWebPath);

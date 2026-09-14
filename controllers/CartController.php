@@ -3,6 +3,7 @@
 // Подключаем модели
 include_once '../models/ProductModels.php';
 include_once '../models/CartModels.php';
+include_once '../models/CategoriesModel.php';
 
 /**
  * Добавление товара в корзину (AJAX)
@@ -65,4 +66,25 @@ function removefromcartAction() {
         'cartCntItems' => $cartCount,
         'message' => 'Товар удалён из корзины'
     ]);
+}
+function indexAction($smarty) {
+    global $db;
+//получаем ID товаров из сессии(ключи массива)
+$itemIds = isset($_SESSION['cart']) ? array_keys($_SESSION['cart']) : [];
+
+//получаем категории для меню
+$rsCategories = getAllMainCatsWithChildren();
+
+//получаем товары из БД по их ID 
+$rsProducts = getProductsFromArray($itemIds, $db);
+
+//передаем в шаблон
+$smarty->assign('pageTitle', 'Корзина');
+$smarty->assign('rsCategories', $rsCategories);
+$smarty->assign('rsProducts', $rsProducts);
+
+//загружаем шаблон
+loadTemplate($smarty, 'header');
+loadTemplate($smarty, 'cart');
+loadTemplate($smarty, 'footer');
 }

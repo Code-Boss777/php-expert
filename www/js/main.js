@@ -62,12 +62,12 @@ function removeFromCart(itemId) {
         dataType: 'json',
         success: function(data) {
             console.log("Ответ сервера:", data);
-            
+
             if (data.success) {
                 // ===== ОБНОВЛЯЕМ ИНТЕРФЕЙС =====
                 // 1. Счётчик корзины
                 $('#cartCntItems').html(data.cartCntItems);
-                
+
                 // 2. Переключаем кнопки
                 $('#removeCart_' + itemId).hide();
                 $('#addCart_' + itemId).show();
@@ -87,3 +87,47 @@ function removeFromCart(itemId) {
         }
     });
 }
+
+/**
+ * Пересчёт цены при изменении количества
+ */
+
+function conversionPrice(itemId) {
+    var newCnt = $('#itemCnt_' + itemId).val();
+    var itemPrice = $('#itemPrice_' + itemId).attr('value');
+    var itemRealPrice = newCnt * itemPrice;
+    $('#itemRealPrice_' + itemId).html(itemRealPrice);
+}
+
+//Показать\скрыть блок регистрации
+
+function showRegisterBox() {
+    $('#registerBoxHidden').toggle();
+}
+
+//регистрация нового пользователя
+
+function registerNewUser() {
+    var email = $('#email').val();
+    var pwd1 = $('#pwd1').val();
+    var pwd2 = $('#pwd2').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/user/register/',
+        data: { email: email, pwd1: pwd1, pwd2: pwd2 },
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                alert('Вы успешно зарегистрированы!');
+                location.reload();
+            } else {
+                alert('Ошибка: ' + data.message);
+            }
+        },
+        error: function() {
+            alert('Ошибка соединения с сервером');
+        }
+    });
+}
+

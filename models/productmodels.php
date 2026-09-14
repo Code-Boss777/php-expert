@@ -31,3 +31,24 @@ function getProductById($itemId, $db) {
     $stmt->execute(['id' => $itemId]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Получить список товаров по массиву ID
+ * 
+ * @param array $itemIds Массив ID товаров
+ * @param PDO $db Подключение к БД
+ * @return array
+ */
+function getProductsFromArray($itemIds, $db) {
+    if (empty($itemIds)) {
+        return [];
+    }
+
+//создаем плейсхолдеры для подготовленного запроса
+ $placeholders = implode(',', array_fill(0, count($itemIds), '?'));
+
+    $sql = "SELECT * FROM products WHERE id IN ({$placeholders})";
+    $stmt = $db->prepare($sql);
+    $stmt->execute($itemIds);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}

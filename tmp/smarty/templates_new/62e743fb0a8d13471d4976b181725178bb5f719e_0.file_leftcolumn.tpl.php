@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-09-08 11:56:01
+/* Smarty version 5.5.1, created on 2026-09-14 09:57:06
   from 'file:leftcolumn.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6a9fdbb179c2a4_34558119',
+  'unifunc' => 'content_6aa7a8d2bd4ee9_18286756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62e743fb0a8d13471d4976b181725178bb5f719e' => 
     array (
       0 => 'leftcolumn.tpl',
-      1 => 1788767458,
+      1 => 1789372179,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a9fdbb179c2a4_34558119 (\Smarty\Template $_smarty_tpl) {
+function content_6aa7a8d2bd4ee9_18286756 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?><div id="leftColumn">
     <div id="leftMenu">
@@ -58,6 +58,18 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+        <div id="registerBox">
+    <div class="menuCaption showHidden" onclick="showRegisterBox();">Регистрация</div>
+    <div id="registerBoxHidden" class="hideme">
+        email:<br />
+        <input type="text" id="email" name="email" value="" /><br />
+        пароль:<br />
+        <input type="password" id="pwd1" name="pwd1" value="" /><br />
+        повторить пароль:<br />
+        <input type="password" id="pwd2" name="pwd2" value="" /><br />
+        <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
+    </div>
+</div>
         <div class="menuCaption">Корзина</div>
 <a href="/cart/" title="Перейти в корзину">В корзине</a>
 <span id="cartCntItems">

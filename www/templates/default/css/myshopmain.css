@@ -38,3 +38,17 @@ body {
 .cartBox {
     padding: 5px 0px 5px 0px;
 }
+.hideme {
+    display: none;
+}
+
+.menuCaption.showHidden {
+    cursor: pointer;
+    color: #4a90e2;
+    text-decoration: underline;
+}
+
+.menuCaption.showHidden:hover {
+    color: #2c5aa0;
+    text-decoration: none;
+}
