@@ -10,11 +10,11 @@ include_once '../models/CartModels.php';
 
 function registerAction() {
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-    $pwd1 = isset($_POST['pwd1']) ? trim($_PSOT['pwd1']) : '';
+    $pwd1 = isset($_POST['pwd1']) ? trim($_POST['pwd1']) : '';
     $pwd2 = isset($_POST['pwd2']) ? trim($_POST['pwd2']) : '';
 
     //Проверки
-    if(empty($email) || empty(pwd1) || empty($pwd2)) {
+    if(empty($email) || empty($pwd1) || empty($pwd2)) {
         echo json_encode(['success' => false, 'message' => 'Заполните все поля']);
         return;
     }
