@@ -1,33 +1,39 @@
 <?php
-
-//Контроллер Пользователя
+// Контроллер пользователя
 
 include_once '../models/UserModel.php';
 include_once '../models/CategoriesModel.php';
 include_once '../models/CartModels.php';
 
-//регистрация пользователя
-
+/**
+ * Регистрация нового пользователя (AJAX)
+ */
 function registerAction() {
-    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-    $pwd1 = isset($_POST['pwd1']) ? trim($_POST['pwd1']) : '';
-    $pwd2 = isset($_POST['pwd2']) ? trim($_POST['pwd2']) : '';
-
-    //Проверки
-    if(empty($email) || empty($pwd1) || empty($pwd2)) {
-        echo json_encode(['success' => false, 'message' => 'Заполните все поля']);
+    global $db;
+    
+    // 1. Получаем данные
+    $email = isset($_REQUEST['email']) ? trim($_REQUEST['email']) : '';
+    $pwd1 = isset($_REQUEST['pwd1']) ? trim($_REQUEST['pwd1']) : '';
+    $pwd2 = isset($_REQUEST['pwd2']) ? trim($_REQUEST['pwd2']) : '';
+    $name = isset($_REQUEST['name']) ? trim($_REQUEST['name']) : '';
+    $phone = isset($_REQUEST['phone']) ? trim($_REQUEST['phone']) : '';
+    $address = isset($_REQUEST['address']) ? trim($_REQUEST['address']) : '';
+    
+    // 2. Проверяем параметры
+    $checkResult = checkRegisterParams($email, $pwd1, $pwd2);
+    
+    if (!$checkResult['success']) {
+        echo json_encode($checkResult);
         return;
     }
-    if ($pwd1 !== $pwd2) {
-        echo json_encode(['success' => false, 'message' => 'Пароли не совпадают']);
-        return;
+    
+    // 3. Регистрируем
+    $userData = registerNewUser($email, $pwd1, $name, $phone, $address);
+    
+    // 4. Отправляем ответ
+    if ($userData['success']) {
+        $_SESSION['user'] = $userData['userId'];
     }
-    //регистрируем
-    $userId = registerNewUser($email, $pwd1, '', '', '');
-
-    if($userId) {
-        echo json_encode(['success' => true, 'userId' => $userId]);
-    } else {
-        echo json_encode(['success => false', 'message' => 'Ошибка регистрации']);
-    }
+    
+    echo json_encode($userData);
 }

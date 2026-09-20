@@ -21,14 +21,20 @@
 <div id="registerBox">
     <div class="menuCaption showHidden" onclick="showRegisterBox();">Регистрация</div>
     <div id="registerBoxHidden" class="hideme">
-        email:<br />
-        <input type="text" id="email" name="email" value="" /><br />
-        пароль:<br />
-        <input type="password" id="pwd1" name="pwd1" value="" /><br />
-        повторить пароль:<br />
-        <input type="password" id="pwd2" name="pwd2" value="" /><br />
-        <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
-    </div>
+    email:<br />
+    <input type="text" id="email" name="email" value="" /><br />
+    пароль:<br />
+    <input type="password" id="pwd1" name="pwd1" value="" /><br />
+    повторить пароль:<br />
+    <input type="password" id="pwd2" name="pwd2" value="" /><br />
+    имя:<br />
+    <input type="text" id="name" name="name" value="" /><br />
+    телефон:<br />
+    <input type="text" id="phone" name="phone" value="" /><br />
+    адрес:<br />
+    <input type="text" id="address" name="address" value="" /><br />
+    <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
+</div>
 </div>
 {*блок корзины*}
         <div class="menuCaption">Корзина</div>
