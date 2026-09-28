@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-09-20 07:33:09
+/* Smarty version 5.5.1, created on 2026-09-28 07:00:18
   from 'file:leftcolumn.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6aaf70155d4883_83704092',
+  'unifunc' => 'content_6ab9f46215f943_95614109',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6aaf70155d4883_83704092 (\Smarty\Template $_smarty_tpl) {
+function content_6ab9f46215f943_95614109 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?><div id="leftColumn">
     <div id="leftMenu">
