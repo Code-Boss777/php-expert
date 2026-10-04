@@ -17,6 +17,8 @@ RewriteRule ^cart/$ ?controller=cart&action=index [QSA,L]
 
 # ===== ПРАВИЛА ДЛЯ ПОЛЬЗОВАТЕЛЕЙ =====
 RewriteRule ^user/register/$ ?controller=user&action=register [QSA,L]
+RewriteRule ^user/logout/$ ?controller=user&action=logout [QSA,L]
+RewriteRule ^user/login/$ ?controller=user&action=login [QSA,L]
 
 
 # ===== 2. УНИВЕРСАЛЬНЫЕ ПРАВИЛА =====

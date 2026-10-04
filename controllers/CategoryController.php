@@ -1,4 +1,5 @@
 <?php
+include_once '../models/CartModels.php';
  include_once '../models/CategoriesModel.php';
  include_once '../models/ProductModels.php';
 

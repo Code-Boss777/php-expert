@@ -27,7 +27,7 @@ function loadTemplate($smarty, $templateName) {
 
 /**
  * Функция отладки (Дамп данных)
- * 
+ *
  * @param mixed $value Переменная для вывода на экран
  * @param int $die Флаг остановки скрипта
  */

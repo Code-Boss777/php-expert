@@ -33,8 +33,26 @@
     <input type="text" id="phone" name="phone" value="" /><br />
     адрес:<br />
     <input type="text" id="address" name="address" value="" /><br />
-    <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
+        <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
+    </div>  {* закрываем registerBoxHidden *}
+</div>      {* закрываем registerBox *}
+
+{* ===== БЛОК АВТОРИЗАЦИИ ===== *}
+<div id="loginBox">
+    <div class="menuCaption showHidden" onclick="showLoginBox();">Авторизация</div>
+    <div id="loginBoxHidden" class="hideme">
+        email:<br />
+        <input type="text" id="loginEmail" name="loginEmail" value="" /><br />
+        пароль:<br />
+        <input type="password" id="loginPwd" name="loginPwd" value="" /><br />
+        <input type="button" onclick="login();" value="Войти" />
+    </div>
 </div>
+</div>
+{* ===== БЛОК ЗАРЕГИСТРИРОВАННОГО ПОЛЬЗОВАТЕЛЯ ===== *}
+<div id="userBox" class="hideme">
+    <a href="/user/" id="userLink">Пользователь</a><br />
+    <a href="/user/logout/" onclick="logout(); return false;">Выход</a>
 </div>
 {*блок корзины*}
         <div class="menuCaption">Корзина</div>

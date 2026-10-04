@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-09-29 08:33:35
+/* Smarty version 5.5.1, created on 2026-10-04 06:55:46
   from 'file:leftcolumn.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6abb5bbfdc2954_88621062',
+  'unifunc' => 'content_6ac1dc52ccbfb6_81651572',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62e743fb0a8d13471d4976b181725178bb5f719e' => 
     array (
       0 => 'leftcolumn.tpl',
-      1 => 1789882377,
+      1 => 1791089503,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6abb5bbfdc2954_88621062 (\Smarty\Template $_smarty_tpl) {
+function content_6ac1dc52ccbfb6_81651572 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?><div id="leftColumn">
     <div id="leftMenu">
@@ -73,8 +73,22 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <input type="text" id="phone" name="phone" value="" /><br />
     адрес:<br />
     <input type="text" id="address" name="address" value="" /><br />
-    <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
+        <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
+    </div>  </div>      
+<div id="loginBox">
+    <div class="menuCaption showHidden" onclick="showLoginBox();">Авторизация</div>
+    <div id="loginBoxHidden" class="hideme">
+        email:<br />
+        <input type="text" id="loginEmail" name="loginEmail" value="" /><br />
+        пароль:<br />
+        <input type="password" id="loginPwd" name="loginPwd" value="" /><br />
+        <input type="button" onclick="login();" value="Войти" />
+    </div>
 </div>
+</div>
+<div id="userBox" class="hideme">
+    <a href="/user/" id="userLink">Пользователь</a><br />
+    <a href="/user/logout/" onclick="logout(); return false;">Выход</a>
 </div>
         <div class="menuCaption">Корзина</div>
 <a href="/cart/" title="Перейти в корзину">В корзине</a>
