@@ -32,10 +32,10 @@
             </span>
         </td>
         <td>
-            <span id="itemRealPrice_{$item['id']}">
-                {$item['price']}
-            </span>
-        </td>
+    <span id="itemRealPrice_{$item['id']}">
+        {math equation="x * y" x=$item['price'] y=1}
+    </span>
+</td>
         <td>
             <a id="removeCart_{$item['id']}" 
                href="#" 

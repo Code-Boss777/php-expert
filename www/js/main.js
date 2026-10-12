@@ -19,12 +19,12 @@ function addToCart(itemId) {
         dataType: 'json',
         success: function(data) {
             console.log("Ответ сервера:", data);
-            
+
             if (data.success) {
                 // ===== ОБНОВЛЯЕМ ИНТЕРФЕЙС =====
                 // 1. Счётчик корзины
                 $('#cartCntItems').html(data.cartCntItems);
-                
+
                 // 2. Переключаем кнопки
                 $('#addCart_' + itemId).hide();
                 $('#removeCart_' + itemId).show();
@@ -67,7 +67,6 @@ function removeFromCart(itemId) {
                 // ===== ОБНОВЛЯЕМ ИНТЕРФЕЙС =====
                 // 1. Счётчик корзины
                 $('#cartCntItems').html(data.cartCntItems);
-
                 // 2. Переключаем кнопки
                 $('#removeCart_' + itemId).hide();
                 $('#addCart_' + itemId).show();
@@ -97,7 +96,21 @@ function conversionPrice(itemId) {
     var itemPrice = $('#itemPrice_' + itemId).attr('value');
     var itemRealPrice = newCnt * itemPrice;
     $('#itemRealPrice_' + itemId).html(itemRealPrice);
+
+    // Отправляем на сервер
+    $.ajax({
+        type: 'POST',
+        url: '/cart/updatecount/',
+        data: { id: itemId, count: newCnt },
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                console.log('Количество обновлено');
+            }
+        }
+    });
 }
+
 
 //Показать\скрыть блок регистрации
 

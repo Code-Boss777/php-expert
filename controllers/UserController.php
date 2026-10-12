@@ -10,7 +10,7 @@ include_once '../models/CartModels.php';
  */
 function registerAction() {
     global $db;
-    
+
     // 1. Получаем данные
     $email = isset($_REQUEST['email']) ? trim($_REQUEST['email']) : '';
     $pwd1 = isset($_REQUEST['pwd1']) ? trim($_REQUEST['pwd1']) : '';
@@ -18,23 +18,23 @@ function registerAction() {
     $name = isset($_REQUEST['name']) ? trim($_REQUEST['name']) : '';
     $phone = isset($_REQUEST['phone']) ? trim($_REQUEST['phone']) : '';
     $address = isset($_REQUEST['address']) ? trim($_REQUEST['address']) : '';
-    
+
     // 2. Проверяем параметры
     $checkResult = checkRegisterParams($email, $pwd1, $pwd2);
-    
+
     if (!$checkResult['success']) {
         echo json_encode($checkResult);
         return;
     }
-    
+
     // 3. Регистрируем
     $userData = registerNewUser($email, $pwd1, $name, $phone, $address);
-    
+
     // 4. Отправляем ответ
     // 4. Отправляем ответ
 if ($userData['success']) {
     $_SESSION['user'] = $userData['userId'];
-    
+
     // Добавляем имя пользователя в ответ
     $userData['userName'] = $name;
 }
