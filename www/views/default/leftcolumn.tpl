@@ -17,43 +17,49 @@
             {/if}
 
         {/foreach}
-        {* ===== БЛОК РЕГИСТРАЦИИ ===== *}
-<div id="registerBox">
-    <div class="menuCaption showHidden" onclick="showRegisterBox();">Регистрация</div>
-    <div id="registerBoxHidden" class="hideme">
-    email:<br />
-    <input type="text" id="email" name="email" value="" /><br />
-    пароль:<br />
-    <input type="password" id="pwd1" name="pwd1" value="" /><br />
-    повторить пароль:<br />
-    <input type="password" id="pwd2" name="pwd2" value="" /><br />
-    имя:<br />
-    <input type="text" id="name" name="name" value="" /><br />
-    телефон:<br />
-    <input type="text" id="phone" name="phone" value="" /><br />
-    адрес:<br />
-    <input type="text" id="address" name="address" value="" /><br />
-        <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
-    </div>  {* закрываем registerBoxHidden *}
-</div>      {* закрываем registerBox *}
-
-{* ===== БЛОК АВТОРИЗАЦИИ ===== *}
-<div id="loginBox">
-    <div class="menuCaption showHidden" onclick="showLoginBox();">Авторизация</div>
-    <div id="loginBoxHidden" class="hideme">
-        email:<br />
-        <input type="text" id="loginEmail" name="loginEmail" value="" /><br />
-        пароль:<br />
-        <input type="password" id="loginPwd" name="loginPwd" value="" /><br />
-        <input type="button" onclick="login();" value="Войти" />
+        {if !$user}
+    {* ===== БЛОК РЕГИСТРАЦИИ ===== *}
+    <div id="registerBox">
+        <div class="menuCaption showHidden" onclick="showRegisterBox();">Регистрация</div>
+        <div id="registerBoxHidden" class="hideme">
+            email:<br />
+            <input type="text" id="email" name="email" value="" /><br />
+            пароль:<br />
+            <input type="password" id="pwd1" name="pwd1" value="" /><br />
+            повторить пароль:<br />
+            <input type="password" id="pwd2" name="pwd2" value="" /><br />
+            имя:<br />
+            <input type="text" id="name" name="name" value="" /><br />
+            телефон:<br />
+            <input type="text" id="phone" name="phone" value="" /><br />
+            адрес:<br />
+            <input type="text" id="address" name="address" value="" /><br />
+            <input type="button" onclick="registerNewUser();" value="Зарегистрироваться" />
+        </div>
     </div>
+{/if}
+
+{if !$user}
+    {* ===== БЛОК АВТОРИЗАЦИИ ===== *}
+    <div id="loginBox">
+        <div class="menuCaption showHidden" onclick="showLoginBox();">Авторизация</div>
+        <div id="loginBoxHidden" class="hideme">
+            email:<br />
+            <input type="text" id="loginEmail" name="loginEmail" value="" /><br />
+            пароль:<br />
+            <input type="password" id="loginPwd" name="loginPwd" value="" /><br />
+            <input type="button" onclick="login();" value="Войти" />
+        </div>
+    </div>
+{/if}
 </div>
-</div>
-{* ===== БЛОК ЗАРЕГИСТРИРОВАННОГО ПОЛЬЗОВАТЕЛЯ ===== *}
-<div id="userBox" class="hideme">
-    <a href="/user/" id="userLink">Пользователь</a><br />
-    <a href="/user/logout/" onclick="logout(); return false;">Выход</a>
-</div>
+{if $user}
+    {* ===== БЛОК ЗАРЕГИСТРИРОВАННОГО ПОЛЬЗОВАТЕЛЯ ===== *}
+    <div id="userBox">
+        <a href="/user/" id="userLink">Пользователь</a><br />
+        <a href="/user/logout/" onclick="logout(); return false;">Выход</a>
+    </div>
+{/if}
 {*блок корзины*}
         <div class="menuCaption">Корзина</div>
 {*Ссылка на страницу корзины*}
