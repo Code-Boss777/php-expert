@@ -61,23 +61,20 @@ function removeFromCart(itemId) {
         url: '/cart/removefromcart/' + itemId + '/',
         dataType: 'json',
         success: function(data) {
-            console.log("Ответ сервера:", data);
-
             if (data.success) {
-                // ===== ОБНОВЛЯЕМ ИНТЕРФЕЙС =====
-                // 1. Счётчик корзины
-                $('#cartCntItems').html(data.cartCntItems);
-                // 2. Переключаем кнопки
-                $('#removeCart_' + itemId).hide();
-                $('#addCart_' + itemId).show();
-                $('#addCart_' + itemId).text('Добавить в корзину').prop('disabled', false);
+                // Если мы на странице корзины, перезагружаем её
+                if (window.location.pathname === '/cart/' || window.location.href.includes('/cart')) {
+                    location.reload();
+                } else {
+                    // Если на странице товара — переключаем кнопки
+                    $('#cartCntItems').html(data.cartCntItems);
+                    $('#removeCart_' + itemId).hide();
+                    $('#addCart_' + itemId).show();
+                }
             } else {
                 alert('Ошибка: ' + data.message);
-                if ($button.length) {
-                    $button.text('Удалить из корзины').prop('disabled', false);
-                }
             }
-        },
+        }, // <--- ЗДЕСЬ ДОЛЖНА БЫТЬ ЗАПЯТАЯ, А НЕ '}},'
         error: function() {
             alert('Ошибка соединения с сервером');
             if ($button.length) {
@@ -92,12 +89,18 @@ function removeFromCart(itemId) {
  */
 
 function conversionPrice(itemId) {
+    // 1. Получаем новое количество из поля
     var newCnt = $('#itemCnt_' + itemId).val();
     var itemPrice = $('#itemPrice_' + itemId).attr('value');
+    
+    // 2. Пересчитываем сумму для этой позиции
     var itemRealPrice = newCnt * itemPrice;
     $('#itemRealPrice_' + itemId).html(itemRealPrice);
 
-    // Отправляем на сервер
+    // === 3. ВЫЗЫВАЕМ ПЕРЕСЧЕТ ОБЩЕЙ СУММЫ ===
+    calculateTotal(); 
+
+    // 4. Отправляем данные на сервер (AJAX)
     $.ajax({
         type: 'POST',
         url: '/cart/updatecount/',
@@ -105,7 +108,9 @@ function conversionPrice(itemId) {
         dataType: 'json',
         success: function(data) {
             if (data.success) {
-                console.log('Количество обновлено');
+                console.log('Количество сохранено в сессии');
+            } else {
+                alert('Ошибка сохранения: ' + data.message);
             }
         }
     });
@@ -221,3 +226,23 @@ function login() {
         }
     });
 }
+/**
+ * Пересчитать общую сумму всей корзины
+ */
+function calculateTotal() {
+    var total = 0;
+    // Проходим по всем ячейкам с итоговой ценой позиции
+    $('[id^="itemRealPrice_"]').each(function() {
+        var price = parseFloat($(this).text()) || 0;
+        total += price;
+    });
+    // Выводим общую сумму
+    $('#totalPrice').html(total);
+}
+
+// Вызываем подсчет при загрузке страницы корзины
+$(document).ready(function() {
+    if ($('#totalPrice').length > 0) {
+        calculateTotal();
+    }
+});

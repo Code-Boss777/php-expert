@@ -78,6 +78,16 @@ $rsCategories = getAllMainCatsWithChildren();
 //получаем товары из БД по их ID 
 $rsProducts = getProductsFromArray($itemIds, $db);
 
+//Добавляем количество из сессии.
+if(!empty($rsProducts)) {
+    foreach($rsProducts as &$product) {
+        //Берем количество из сессии. Если нет - ставим 1.
+        $product['quantity'] = isset($_SESSION['cart'][$product['id']]) 
+                       ? $_SESSION['cart'][$product['id']] 
+                       : 1;
+    }
+}
+
 //передаем в шаблон
 $smarty->assign('pageTitle', 'Корзина');
 $smarty->assign('rsCategories', $rsCategories);
@@ -87,4 +97,25 @@ $smarty->assign('rsProducts', $rsProducts);
 loadTemplate($smarty, 'header');
 loadTemplate($smarty, 'cart');
 loadTemplate($smarty, 'footer');
+}
+
+function updatecountAction() {
+    global $db;
+
+    $itemId = isset($_POST['id']) ? intval($_POST['id']) : 0;
+    $count = isset($_POST['count']) ? intval($_POST['count']) : 1;
+
+    if ($itemId <= 0 || $count <= 0) {
+        echo json_encode(['success' => false, 'message' => 'Неверные данные']);
+        return;
+    }
+    
+    // Обновляем количество в сессии
+    updateCartCount($itemId, $count);
+    
+    // Возвращаем успех
+    echo json_encode([
+        'success' => true,
+        'cartCntItems' => getCartCount()
+    ]);
 }

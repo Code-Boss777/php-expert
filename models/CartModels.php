@@ -11,14 +11,14 @@ function addToCart($productId) {
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
-    
+
     // Если товар уже есть — увеличиваем количество
     if (isset($_SESSION['cart'][$productId])) {
         $_SESSION['cart'][$productId]++;
     } else {
         $_SESSION['cart'][$productId] = 1;
     }
-    
+
     return $_SESSION['cart'];
 }
 
@@ -67,5 +67,13 @@ function removeFromCart($productId) {
         unset($_SESSION['cart'][$productId]);
     }
     
+    return $_SESSION['cart'];
+}
+
+
+function updateCartCount($productId, $count) {
+    if(isset($_SESSION['cart'][$productId])) {
+        $_SESSION['cart'][$productId] = $count;
+    }
     return $_SESSION['cart'];
 }

@@ -21,8 +21,8 @@
         </td>
         <td>
             <input type="text" 
-                   id="itemCnt_{$item['id']}" 
-                   value="1" 
+                   id="itemCnt_{$item['id']}"
+                   value="{$item['quantity']}"
                    size="3"
                    onchange="conversionPrice({$item['id']});">
         </td>
@@ -32,10 +32,10 @@
             </span>
         </td>
         <td>
-    <span id="itemRealPrice_{$item['id']}">
-        {math equation="x * y" x=$item['price'] y=1}
-    </span>
-</td>
+            <span id="itemRealPrice_{$item['id']}">
+                {math equation="x * y" x=$item['price'] y=$item['quantity']}
+            </span>
+        </td>
         <td>
             <a id="removeCart_{$item['id']}" 
                href="#" 

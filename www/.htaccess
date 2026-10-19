@@ -14,6 +14,8 @@ RewriteBase /
 RewriteRule ^cart/addtocart/([0-9]+)/$ ?controller=cart&action=addtocart&id=$1 [QSA,L]
 RewriteRule ^cart/removefromcart/([0-9]+)/$ ?controller=cart&action=removefromcart&id=$1 [QSA,L]
 RewriteRule ^cart/$ ?controller=cart&action=index [QSA,L]
+RewriteRule ^cart/updatecount/$ ?controller=cart&action=updatecount [QSA,L]
+
 
 # ===== ПРАВИЛА ДЛЯ ПОЛЬЗОВАТЕЛЕЙ =====
 RewriteRule ^user/register/$ ?controller=user&action=register [QSA,L]
