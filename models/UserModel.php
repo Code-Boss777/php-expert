@@ -71,3 +71,19 @@ function registerNewUser($email, $pwd, $name, $phone, $address) {
     
     return $res;
 }
+/**
+ * Обновление данных пользователя (Заготовка)
+ * 
+ * @param string $name Имя
+ * @param string $phone Телефон
+ * @param string $address Адрес
+ * @param string $pwd1 Новый пароль
+ * @param string $pwd2 Повтор нового пароля
+ * @param string $curPwd Текущий пароль (для подтверждения)
+ * @return array
+ */
+function updateUserData($name, $phone, $address, $pwd1, $pwd2, $curPwd) {
+    $res = ['success' => false, 'message' => 'Логика в работе'];
+    //4.9-4.11
+    return $res;
+}

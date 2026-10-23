@@ -94,3 +94,22 @@ function loginAction() {
     ]);
 }
 
+function indexAction($smarty) {
+    //Если пользователь не залогинен - редирект на главную
+    if(!isset($_SESSION['user'])) {
+    redirect('/');
+    }
+    //получаем категории для меню
+    $rsCategories = getAllMainCatsWithChildren();
+    //берем данные пользователя для сессии (чтоб вывести в форму)
+    $arUser = $_SESSION-['user'];
+    //передаем в шаблон
+    $smarty->assign('pageTitle', 'Страница пользователя');
+    $smarty->assign('rsCategories', $rsCategories);
+    $smarty->assign('arUser', $arUser);
+
+    // 5. Подключаем шаблоны
+    loadTemplate($smarty, 'header');
+    loadTemplate($smarty, 'user');
+    loadTemplate($smarty, 'footer');
+}

@@ -21,6 +21,7 @@ RewriteRule ^cart/updatecount/$ ?controller=cart&action=updatecount [QSA,L]
 RewriteRule ^user/register/$ ?controller=user&action=register [QSA,L]
 RewriteRule ^user/logout/$ ?controller=user&action=logout [QSA,L]
 RewriteRule ^user/login/$ ?controller=user&action=login [QSA,L]
+RewriteRule ^user/$ ?controller=user&action=index [QSA,L]
 
 
 # ===== 2. УНИВЕРСАЛЬНЫЕ ПРАВИЛА =====
