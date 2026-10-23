@@ -154,9 +154,10 @@ function registerNewUser() {
             if (data.success) {
                 alert('Регистрация прошла успешно!');
                 
-                // Скрываем блок регистрации
+                // Скрываем формы
                 $('#registerBox').hide();
-                
+                $('#loginBox').hide();
+
                 // Показываем блок пользователя
                 $('#userLink').attr('href', '/user/');
                 $('#userLink').html(data.userName || 'Пользователь');
@@ -180,7 +181,7 @@ function logout() {
         url: '/user/logout/',
         dataType: 'json',
         success: function() {
-            location.reload();
+            location.reload(); //Перезагружаем страницу, чтобы обновить меню
         },
         error: function() {
             location.reload();

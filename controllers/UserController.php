@@ -26,21 +26,24 @@ function registerAction() {
         echo json_encode($checkResult);
         return;
     }
-
+}
     // 3. Регистрируем
     $userData = registerNewUser($email, $pwd1, $name, $phone, $address);
 
     // 4. Отправляем ответ
-    // 4. Отправляем ответ
-if ($userData['success']) {
-    $_SESSION['user'] = $userData['userId'];
+ if ($userData['success']) {
+        // Сохраняем данные пользователя в сессию
+        $_SESSION['user'] = [
+            'id' => $userData['userId'],
+            'email' => $email,
+            'name' => $name ? $name : $email
+        ];
 
-    // Добавляем имя пользователя в ответ
-    $userData['userName'] = $name;
-}
+        // Добавляем имя в ответ для JS
+        $userData['userName'] = $name ? $name : $email;
+    }
 
-echo json_encode($userData);
-}
+    echo json_encode($userData);
 //выход пользователя 
 function logoutAction() {
 //удаляем сессию пользователя
@@ -90,3 +93,4 @@ function loginAction() {
         'userName' => $user['name'] ?: $user['email']
     ]);
 }
+

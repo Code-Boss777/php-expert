@@ -10,7 +10,7 @@
  */
 function loadPage($smarty, $controllerName, $actionName = 'Index') {
     include_once PathPrefix . $controllerName . PathPostfix;
-    
+
     $function = $actionName . 'Action';
     $function($smarty);
 }
@@ -50,4 +50,13 @@ function createSmartyRsArray($rs) {
 
     // fetchAll мгновенно собирает массив без старых циклов while
     return $rs->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Редирект на указанную страницу
+ * @param string $url
+ */
+function redirect($url = '/') {
+    header("Location: {$url}");
+    exit;
 }
