@@ -14,6 +14,10 @@ include_once '../config/config.php';  // Было 'config/config.php'
 include_once '../config/db.php';      // Было 'config/db.php'
 include_once '../library/mainFunction.php'; // Было 'library/mainFunction.php'
 
+// Передаём пользователя в Smarty (для меню)
+$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+$smarty->assign('user', $user);
+
 // 2. ОПРЕДЕЛЯЕМ КОНТРОЛЛЕР И ЭКШН
 $controllerName = isset($_GET['controller']) ? ucfirst($_GET['controller']) : 'Index';
 $actionName = isset($_GET['action']) ? $_GET['action'] : 'index';

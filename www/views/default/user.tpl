@@ -14,13 +14,13 @@
     <tr>
         <td>Тел</td>
         <td>
-            <input type="text" id="newPhone" value="{$arUser['phone']}" />
+            <input type="text" id="newPhone" value="{$arUser['phone']|default:''}" />
         </td>
     </tr>
     <tr>
         <td>Адрес</td>
         <td>
-            <textarea id="newAdress">{$arUser['address']}</textarea>
+            <textarea id="newAdress">{$arUser['address']|default:''}</textarea>
         </td>
     </tr>
     <tr>

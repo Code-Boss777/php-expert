@@ -247,3 +247,41 @@ $(document).ready(function() {
         calculateTotal();
     }
 });
+
+/**
+ * Отправка данных для обновления профиля
+ */
+function updateUserData() {
+    var postData = {
+        name:    $('#newName').val(),
+        phone:   $('#newPhone').val(),
+        address: $('#newAdress').val(), // Обрати внимание: в твоем tpl написано newAdress
+        pwd1:    $('#newPwd1').val(),
+        pwd2:    $('#newPwd2').val(),
+        curPwd:  $('#curPwd').val()
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/user/update/',
+        data: postData,
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                alert(data.message);
+                // Обновляем имя в левом меню (если оно изменилось)
+                $('#userLink').html(data.userName);
+                
+                // Очищаем поля с паролями
+                $('#newPwd1').val('');
+                $('#newPwd2').val('');
+                $('#curPwd').val('');
+            } else {
+                alert('Ошибка: ' + data.message);
+            }
+        },
+        error: function() {
+            alert('Ошибка соединения с сервером');
+        }
+    });
+}

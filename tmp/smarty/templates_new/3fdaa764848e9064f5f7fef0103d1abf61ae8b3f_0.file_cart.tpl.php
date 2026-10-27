@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-10-19 12:30:42
+/* Smarty version 5.5.1, created on 2026-10-27 07:12:44
   from 'file:cart.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6ad5f1522b18f6_15902180',
+  'unifunc' => 'content_6ae040dc147595_75366742',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3fdaa764848e9064f5f7fef0103d1abf61ae8b3f' => 
     array (
       0 => 'cart.tpl',
-      1 => 1792405201,
+      1 => 1792405889,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6ad5f1522b18f6_15902180 (\Smarty\Template $_smarty_tpl) {
+function content_6ae040dc147595_75366742 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?><h2>Корзина</h2>
 
