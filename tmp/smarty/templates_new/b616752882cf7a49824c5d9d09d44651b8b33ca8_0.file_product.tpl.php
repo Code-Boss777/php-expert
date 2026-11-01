@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-10-27 07:07:24
+/* Smarty version 5.5.1, created on 2026-11-01 07:12:31
   from 'file:product.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6ae03f9cee0736_34625649',
+  'unifunc' => 'content_6ae6d84f07f0d1_10166081',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6ae03f9cee0736_34625649 (\Smarty\Template $_smarty_tpl) {
+function content_6ae6d84f07f0d1_10166081 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?>
 <h3><?php ob_start();

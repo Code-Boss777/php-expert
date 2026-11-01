@@ -65,6 +65,7 @@ function loginAction() {
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $pwd = isset($_POST['pwd']) ? trim($_POST['pwd']) : '';
     
+    
     if (empty($email) || empty($pwd)) {
         echo json_encode(['success' => false, 'message' => 'Введите email и пароль']);
         return;
@@ -80,7 +81,12 @@ function loginAction() {
         echo json_encode(['success' => false, 'message' => 'Пользователь не найден']);
         return;
     }
-    
+var_dump($pwd);
+var_dump($user['pwd']);
+var_dump(password_verify($pwd, $user['pwd']));
+die;
+
+
     // Проверяем пароль
     if (!password_verify($pwd, $user['pwd'])) {
         echo json_encode(['success' => false, 'message' => 'Неверный пароль']);
