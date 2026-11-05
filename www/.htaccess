@@ -36,3 +36,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # ===== 4. ВСЁ ОСТАЛЬНОЕ — НА INDEX.PHP =====
 RewriteRule ^(.*)$ index.php [L,QSA]
+RewriteRule ^order/$ ?controller=cart&action=order [QSA, L]

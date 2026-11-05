@@ -81,10 +81,6 @@ function loginAction() {
         echo json_encode(['success' => false, 'message' => 'Пользователь не найден']);
         return;
     }
-var_dump($pwd);
-var_dump($user['pwd']);
-var_dump(password_verify($pwd, $user['pwd']));
-die;
 
 
     // Проверяем пароль
@@ -92,7 +88,7 @@ die;
         echo json_encode(['success' => false, 'message' => 'Неверный пароль']);
         return;
     }
-    
+
     // Сохраняем в сессию МАССИВОМ (чтобы работал $user.name в шаблоне)
     $_SESSION['user'] = [
         'id' => $user['id'],
@@ -101,7 +97,7 @@ die;
         'phone' => $user['phone'],
         'address' => $user['address']
     ];
-    
+
     echo json_encode([
         'success' => true,
         'userName' => $_SESSION['user']['name']

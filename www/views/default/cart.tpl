@@ -55,7 +55,15 @@
             <td><strong id="totalPrice"></strong></td>
             <td></td>
         </tr>
+        <tr>
+            <td colspan="5"></td>
+            <td>
+                <input type="submit" value="Оформить заказ" />
+            </td>
+        </tr>
     </table>
 {/if}
-
+<form action="/order/" method="POST">
+    <input type="submit" value="Оформить заказ" class="btn btn-primary" />
+</form>
 <a href="/">Продолжить покупки</a>

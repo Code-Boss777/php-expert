@@ -119,3 +119,97 @@ function updatecountAction() {
         'cartCntItems' => getCartCount()
     ]);
 }
+/**
+ * Страница оформления заказа
+ */
+function orderAction($smarty) {
+    global $db;
+// Получаем ID товаров из сессии
+$itemIds = isset($_SESSION['cart']) ? array_keys($_SESSION['cart']) : [];
+
+// Если корзина пуста - редирект обратно в корзину
+if(empty($itemIds)) {
+    redirect('/cart/');
+    return;
+}
+// получаем количествоиз POST (из формы корзины)
+$itemCnt = [];
+foreach ($itemIds as $itemId) {
+    $postvar = 'itemCnt_' . $itemId;
+    // Если пришлов POST - берем оттудаа, если нет - из сессии
+    $itemCnt[$itemId] = isset($_POST[$postVar]) ? intval(_POST[$postVar]) : $_SESSION['cart'][$itemId];
+}
+// Получакм товарды из БД
+$rsProduct = getProductsFromArray($itemId, $db);
+// Считаем итоги и убираем товаары с количеством 0
+$finalProducts = [];
+foreach ($rsProducts as $product) {
+    $cnt = $itemCnt[$product['id']] ?? 0;
+    if ($cnt > 0) {
+        $product['cnt'] = $cnt;
+        $product['realPrice'] = $cnt * $product['price'];
+        $finalProducts[] = $product;
+    }
+}
+// Если все товары удалили (ввели 0) - обратно в корзину
+if (empty($finalProducts)) {
+    redirect('/cart/');
+    return;
+}
+// 5. Сохраняем промужуточноые днные заказа в сессию
+$_SESSION['saleCart'] = $finallProducts;
+
+// 6. Получаем категории для меню
+$rsCategories = getAllMainCatsWithChildren();
+
+// 7. Скрывать ли блок логина(если пользователь уже авторизован)
+$hideLoginBox = isset($_SESSION['user']) ? 1 : 0;
+
+//8. Переадем в шаблон
+$smarty->assign('pageTitles', 'Оформление заказа');
+$smarty->assign('rsCategories', $rsCategories);
+$smarty->assign('rsProsucts', $finalProducts);
+$smarty->assign('hideLoginBox', $hideLoginBox);
+
+//9. Загружаем Шаблоны
+loadTemplate($smarty, 'header');
+loadTemplate($smarty, 'order');
+loadTemplate($smarty, 'footer');
+}
+
+/**
+ * Сохранение заказа в БД (AJAX)
+ */
+function saveOrderAction() {
+    global $db;
+
+    // 1. Если пользователь не авторизован - ошибка
+    if (!isset($_SESSION['user'])) {
+        echo json_encode(['success' => false, 'message' => 'Необходимо авторизоваться']);
+        return;
+    }
+    //2. Берем данные из формы
+    $name = isset($_POST['name']) ? trim($_POST['name']) : '';
+    $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+    $address = isset($_POST['address']) ? trim($_POST['address']) : '';
+    $userId = $_SESSION-['user']['id'];
+
+//3. Проверяем, есть ли товары в корзине заказа 
+if (empty($_SESSION['saleCart'])) {
+    echo json_encode(['success' => false, 'message' => 'Корзина пуста']);
+    return;
+}
+//4. Сохраняем заказ в БД (функция будет в OrderModel.php)
+require_once '../models/OrderModel.php';
+$orderId = saveOrder($userId, $name, $phone, $address, $_SESSION['saleCart'], $db);
+
+if ($orderId) {
+//5. Очищаем корзины
+unset($_SESSION['cart']);
+unset($_SESSION['saleCart']);
+echo json_encode(['success' => true, 'orderId' => $orderId]);
+} else {
+    echo json_encode(['success' => false, 'message' => 'Ошибкаа при сохранения заказа']);
+    }
+}
+
