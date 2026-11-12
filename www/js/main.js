@@ -285,3 +285,31 @@ function updateUserData() {
         }
     });
 }
+/**
+ * Сохранение заказа
+ */
+
+function saveOrder(event) {
+    if(event) event.preventDefault(); // Останавливаем стандартную отправку формы
+    
+    var data = $('#frmOrder').serialize();
+    
+    $.ajax({
+        type: 'POST',
+        url: '/cart/saveorder/', // Оставляем со слэшем
+        data: data,
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                alert('Заказ успешно оформлен!');
+                window.location.href = '/';
+            } else {
+                alert('Ошибка: ' + response.message);
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText); // Если снова ошибка, покажет в консоли
+            alert('Ошибка соединения с сервером');
+        }
+    });
+}

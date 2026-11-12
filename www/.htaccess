@@ -10,30 +10,29 @@ DirectoryIndex index.php
 RewriteEngine On
 RewriteBase /
 
-# ===== 1. ПРАВИЛА ДЛЯ КОРЗИНЫ (ОБЯЗАТЕЛЬНО ПЕРВЫМИ) =====
+# ===== 1. ПРАВИЛА ДЛЯ КОРЗИНЫ =====
 RewriteRule ^cart/addtocart/([0-9]+)/$ ?controller=cart&action=addtocart&id=$1 [QSA,L]
 RewriteRule ^cart/removefromcart/([0-9]+)/$ ?controller=cart&action=removefromcart&id=$1 [QSA,L]
-RewriteRule ^cart/$ ?controller=cart&action=index [QSA,L]
 RewriteRule ^cart/updatecount/$ ?controller=cart&action=updatecount [QSA,L]
+RewriteRule ^cart/order/$ ?controller=cart&action=order [QSA,L]
+RewriteRule ^cart/saveorder/?$ ?controller=cart&action=saveorder [QSA,L]
+RewriteRule ^cart/$ ?controller=cart&action=index [QSA,L]
 
-
-# ===== ПРАВИЛА ДЛЯ ПОЛЬЗОВАТЕЛЕЙ =====
+# ===== 2. ПРАВИЛА ДЛЯ ПОЛЬЗОВАТЕЛЕЙ =====
 RewriteRule ^user/register/$ ?controller=user&action=register [QSA,L]
 RewriteRule ^user/logout/$ ?controller=user&action=logout [QSA,L]
 RewriteRule ^user/login/$ ?controller=user&action=login [QSA,L]
-RewriteRule ^user/$ ?controller=user&action=index [QSA,L]
 RewriteRule ^user/update/$ ?controller=user&action=update [QSA,L]
+RewriteRule ^user/$ ?controller=user&action=index [QSA,L]
 
-
-# ===== 2. УНИВЕРСАЛЬНЫЕ ПРАВИЛА =====
+# ===== 3. УНИВЕРСАЛЬНЫЕ ПРАВИЛА =====
 RewriteRule ^([a-z]+)/([a-z]+)/([0-9]+)/$ ?controller=$1&action=$2&id=$3 [QSA,L]
 RewriteRule ^([a-z]+)/([a-z]+)/$ ?controller=$1&action=$2 [QSA,L]
 RewriteRule ^([a-z]+)/([0-9]+)/$ ?controller=$1&id=$2 [QSA,L]
 
-# ===== 3. ИЗОЛИРУЕМ РЕАЛЬНЫЕ ФАЙЛЫ =====
+# ===== 4. ИЗОЛИРУЕМ РЕАЛЬНЫЕ ФАЙЛЫ =====
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# ===== 4. ВСЁ ОСТАЛЬНОЕ — НА INDEX.PHP =====
+# ===== 5. ВСЁ ОСТАЛЬНОЕ — НА INDEX.PHP =====
 RewriteRule ^(.*)$ index.php [L,QSA]
-RewriteRule ^order/$ ?controller=cart&action=order [QSA, L]

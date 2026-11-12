@@ -109,6 +109,7 @@ function loginAction() {
  */
 function indexAction($smarty) {
     // Если пользователь не залогинен - редирект на главную
+    global $db;
     if(!isset($_SESSION['user'])) {
         redirect('/');
     }
@@ -117,6 +118,9 @@ function indexAction($smarty) {
     
     // Берем данные пользователя из сессии (ИСПРАВЛЕНА ОПЕЧАТКА $_SESSION-['user'])
     $arUser = $_SESSION['user'];
+
+    //Получаем заказы
+    $rsOrders = getUserOrders($arUser['id'], $db);
     
     $smarty->assign('pageTitle', 'Страница пользователя');
     $smarty->assign('rsCategories', $rsCategories);

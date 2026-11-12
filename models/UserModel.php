@@ -126,3 +126,13 @@ $params = [
     $res['message'] = 'Данные сохранены';
     return $res;
 }
+
+/**
+ * Получить список заказов пользователя
+ */
+function getUserOrders($userId, $db) {
+    $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY id DESC";
+    $stmt = $db->prepare($sql);
+    $stmt->execute(['user_id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}

@@ -1,7 +1,7 @@
 {* Страница заказа *}
 <h2>Данные заказа</h2>
 
-<form id="frmOrder" action="/cart/saveorder/" method="POST">
+<form id="frmOrder" action="/cart/saveorder/" method="POST" onsubmit="saveOrder(event); return false;">
     <table border="1" cellpadding="5">
         <tr>
             <th>№</th>
@@ -38,25 +38,22 @@
         {/foreach}
     </table>
 
-    {if isset($arUser)}
+        {if isset($arUser)}
         {* Если пользователь авторизован, показываем его данные *}
         <h3>Данные заказа:</h3>
         <div id="orderUserInfoBox">
-            {$name = $arUser['name']}
-            {$phone = $arUser['phone']}
-            {$address = $arUser['address']}
             <table>
                 <tr>
                     <td>Имя*:</td>
-                    <td><input type="text" id="name" name="name" value="{$name}" /></td>
+                    <td><input type="text" id="name" name="name" value="{$arUser['name']|default:''}" /></td>
                 </tr>
                 <tr>
                     <td>Тел*:</td>
-                    <td><input type="text" id="phone" name="phone" value="{$phone}" /></td>
+                    <td><input type="text" id="phone" name="phone" value="{$arUser['phone']|default:''}" /></td>
                 </tr>
                 <tr>
                     <td>Адрес*:</td>
-                    <td><textarea id="address" name="address">{$address}</textarea></td>
+                    <td><textarea id="address" name="address">{$arUser['address']|default:''}</textarea></td>
                 </tr>
             </table>
         </div>
@@ -89,5 +86,5 @@
         </div>
     {/if}
     
-    <input type="button" onclick="saveOrder();" value="Оформить заказ" />
+     <button type="submit" class="btn btn-primary">Оформить заказ</button>
 </form>
