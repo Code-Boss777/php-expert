@@ -313,3 +313,57 @@ function saveOrder(event) {
         }
     });
 }
+/**
+ * Показать/скрыть товары в заказе
+ */
+function showProductsInOrder(orderId) {
+    var $detailsRow = $('#orderDetails_' + orderId);
+    var $contentBox = $('#orderDetailsContent_' + orderId);
+
+// Если уже открыто - прсто скрываем
+if ($detailsRow.is(':visible')) {
+    $detailsRow.hide();
+    return;
+}
+// Показываем строку с загрузкой
+$detailsRow.show();
+// Если данные уже загружены ранее - просто показывавем
+if ($contentBox.data('loaded')) {
+    return;
+}
+  $.ajax({
+        type: 'POST',
+        url: '/order/getdetails/',
+        data: { id: orderId},
+        dataType: 'json',
+        success: function(data) {
+            if (data.success && data.products.length > 0) {
+                var html = '<table border="1" cellpadding="3" style="width:100%; background:#fff;">';
+                html += '<tr><th>Наименование</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr>';
+                
+                var total = 0;
+                for (var i = 0; i < data.products.length; i++) {
+                    var p = data.products[i];
+                    var sum = p.price * p.amount;
+                    total += sum;
+                    html += '<tr>';
+                    html += '<td>' + p.name + '</td>';
+                    html += '<td>' + p.amount + '</td>';
+                    html += '<td>' + p.price + ' руб.</td>';
+                    html += '<td>' + sum + ' руб.</td>';
+                    html += '</tr>';
+                }
+                html += '<tr><td colspan="3" style="text-align:right;"><b>Итого:</b></td><td><b>' + total + ' руб.</b></td></tr>';
+                html += '</table>';
+                
+                $contentBox.html(html);
+                $contentBox.data('loaded', true); // Запоминаем, что загрузили
+            } else {
+                $contentBox.html('<p style="color:red;">Товары не найдены.</p>');
+            }
+        },
+        error: function() {
+            $contentBox.html('<p style="color:red;">Ошибка загрузки данных.</p>');
+        }
+    });
+}

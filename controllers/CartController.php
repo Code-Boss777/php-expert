@@ -175,7 +175,12 @@ function orderAction($smarty) {
     
     // 7. Скрывать ли блок логина (если пользователь уже авторизован)
     $hideLoginBox = isset($_SESSION['user']) ? 1 : 0;
-    
+
+    if (isset($_SESSION['user'])) {
+        $smarty->assign('arUser', $_SESSION['user']);
+    }
+
+
     // 8. Передаем в шаблон
     $smarty->assign('pageTitle', 'Оформление заказа'); // Убрана 's'
     $smarty->assign('rsCategories', $rsCategories);

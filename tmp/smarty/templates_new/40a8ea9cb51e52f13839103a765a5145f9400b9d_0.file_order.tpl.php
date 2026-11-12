@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-11-10 07:31:19
+/* Smarty version 5.5.1, created on 2026-11-12 06:20:56
   from 'file:order.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6af2ba374855f2_70702824',
+  'unifunc' => 'content_6af54cb8674827_73400471',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '40a8ea9cb51e52f13839103a765a5145f9400b9d' => 
     array (
       0 => 'order.tpl',
-      1 => 1794292274,
+      1 => 1794455200,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6af2ba374855f2_70702824 (\Smarty\Template $_smarty_tpl) {
+function content_6af54cb8674827_73400471 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?><h2>Данные заказа</h2>
 

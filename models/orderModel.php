@@ -30,3 +30,31 @@ function saveOrder($userId, $name, $phone, $address, $products, $db) {
     
     return $orderId;
 }
+
+/**
+ *  Получить список заказов пользователя
+ */
+
+function getOrdersByUser($userId, $db) {
+    $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY id DESC";
+    $stmt = $db->prepare($sql);
+    $stmt->execute(['user_id' => $userId]);
+    return $stmt->fetchALL(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Получить товары конкретного заказа
+ */
+function getOrderDetails($orderId, $db) {
+    $sql = "SELECT p.name, p.price, pu.amount 
+            FROM purchase pu
+            INNER JOIN products p ON pu.product_id = p.id
+            WHERE pu.order_id = :order_id";
+            
+    $stmt = $db->prepare($sql);
+    
+    // ВОТ ЗДЕСЬ ДОЛЖНО БЫТЬ СТРОГО 'order_id' (как и в SQL-запросе выше)
+    $stmt->execute(['order_id' => $orderId]); 
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}

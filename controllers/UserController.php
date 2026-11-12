@@ -4,6 +4,7 @@
 include_once '../models/UserModel.php';
 include_once '../models/CategoriesModel.php';
 include_once '../models/CartModels.php';
+include_once '../models/orderModel.php';
 
 /**
  * Регистрация нового пользователя (AJAX)
@@ -121,10 +122,13 @@ function indexAction($smarty) {
 
     //Получаем заказы
     $rsOrders = getUserOrders($arUser['id'], $db);
+    $arUser = $_SESSION['user'];
+    $rsUserOrders = getOrdersByUser($arUser['id'], $db);// Получаем заказы
     
     $smarty->assign('pageTitle', 'Страница пользователя');
     $smarty->assign('rsCategories', $rsCategories);
     $smarty->assign('arUser', $arUser);
+    $smarty->assign('rsOrders', $rsOrders); // Передаем в шаблон
 
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'user');
