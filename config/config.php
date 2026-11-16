@@ -45,3 +45,8 @@ $smarty->assign('TemplateWebPath', TemplateWebPath);
 //отключаем кэширование smarty
 $smarty->setCompileCheck(true);
 $smarty->setForceCompile(true);
+
+// Настройки для админки
+$templateAdmin = 'admin';
+define('TemplateAdminPrefix', dirname(__DIR__) . "/www/views/{$templateAdmin}/");
+define('TemplateAdminWebPath', "/templates/{$templateAdmin}/");
