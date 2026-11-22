@@ -10,6 +10,10 @@ include_once '../models/UserModel.php';
  * Главная страница админки (Дашборд)
  */
 function indexAction($smarty) {
+
+    var_dump($_SESSION['user']);
+    die;
+
     // ПРОВЕРКА БЕЗОПАСНОСТИ: пускаем только админов
     if (!isset($_SESSION['user']['is_admin']) || $_SESSION['user']['is_admin'] != 1) {
         redirect('/');

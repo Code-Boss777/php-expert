@@ -109,15 +109,16 @@ function loginAction() {
  * Страница пользователя (Личный кабинет)
  */
 function indexAction($smarty) {
+    die;
     // Если пользователь не залогинен - редирект на главную
     global $db;
     if(!isset($_SESSION['user'])) {
         redirect('/');
     }
-    
+
     $rsCategories = getAllMainCatsWithChildren();
-    
-    // Берем данные пользователя из сессии (ИСПРАВЛЕНА ОПЕЧАТКА $_SESSION-['user'])
+
+    // Берем данные пользователя из сессии
     $arUser = $_SESSION['user'];
 
     //Получаем заказы
