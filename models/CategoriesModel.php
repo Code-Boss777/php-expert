@@ -39,3 +39,25 @@ function getCatById(int $catId) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Получить ВСЕ категории (для админки)
+*/
+function getAllCategories($db) {
+    $sql= "SELECT * FROM categories ORDER BY parent_id, id";
+    $stmt = $db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Обновить категорию  (название и родителя)
+ */
+
+function updateCategory($id, $name, $parentId, $db) {
+    $sql = "UPDATE categories SET name = :name, parent_id = :parent_id WHERE id = :id"
+    $stmt = $db->prepare($sql);
+    return $stmt->execute([
+        'id' => $id,
+        'name' => $name,
+        'parent_id' => $parent_id;
+    ]);
+}

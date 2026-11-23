@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2026-11-22 07:26:24
+/* Smarty version 5.5.1, created on 2026-11-23 04:37:01
   from 'file:cart.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6b028b108ea271_68249383',
+  'unifunc' => 'content_6b03b4dddb2598_32174435',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6b028b108ea271_68249383 (\Smarty\Template $_smarty_tpl) {
+function content_6b03b4dddb2598_32174435 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\myshop.local\\www\\views\\default';
 ?><h2>Корзина</h2>
 

@@ -96,7 +96,8 @@ function loginAction() {
         'email' => $user['email'],
         'name' => $user['name'] ? $user['name'] : $user['email'],
         'phone' => $user['phone'],
-        'address' => $user['address']
+        'address' => $user['address'],
+        'is_admin' => $user['is_admin']
     ];
 
     echo json_encode([
@@ -109,27 +110,29 @@ function loginAction() {
  * Страница пользователя (Личный кабинет)
  */
 function indexAction($smarty) {
-    die;
-    // Если пользователь не залогинен - редирект на главную
-    global $db;
+    // 1. Проверка авторизации
     if(!isset($_SESSION['user'])) {
         redirect('/');
+        return; // Останавливаем выполнение после редиректа
     }
 
+    // 2. Глобальное подключение к БД (переносим наверх)
+    global $db;
+
+    // 3. Получаем категории для меню
     $rsCategories = getAllMainCatsWithChildren();
 
-    // Берем данные пользователя из сессии
+    // 4. Берем данные пользователя из сессии
     $arUser = $_SESSION['user'];
 
-    //Получаем заказы
-    $rsOrders = getUserOrders($arUser['id'], $db);
-    $arUser = $_SESSION['user'];
-    $rsUserOrders = getOrdersByUser($arUser['id'], $db);// Получаем заказы
-    
+    // 5. Получаем заказы (используем ТОЛЬКО ОДНУ функцию getOrdersByUser)
+    $rsUserOrders = getOrdersByUser($arUser['id'], $db);
+
+    // 6. Передаем всё в шаблон
     $smarty->assign('pageTitle', 'Страница пользователя');
     $smarty->assign('rsCategories', $rsCategories);
     $smarty->assign('arUser', $arUser);
-    $smarty->assign('rsOrders', $rsOrders); // Передаем в шаблон
+    $smarty->assign('rsOrders', $rsUserOrders); // <--- Передаем ПРАВИЛЬНУЮ переменную!
 
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'user');
