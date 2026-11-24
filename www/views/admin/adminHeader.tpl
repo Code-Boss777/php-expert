@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="{$TemplateWebPath}css/main.css" type="text/css" />
     <script src="/js/jquery-1.7.1.min.js"></script>
-    <script src="{$TemplateWebPath}js/admin.js"></script>
+    <script src="/js/admin.js"></script> <!-- ТУТ ДОБАВЛЕН СЛЭШ -->
 </head>
 <body>
     <div id="header">

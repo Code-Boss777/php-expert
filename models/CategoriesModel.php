@@ -49,15 +49,14 @@ function getAllCategories($db) {
 }
 
 /**
- * Обновить категорию  (название и родителя)
+ * Обновить категорию (название и родителя)
  */
-
 function updateCategory($id, $name, $parentId, $db) {
-    $sql = "UPDATE categories SET name = :name, parent_id = :parent_id WHERE id = :id"
+    $sql = "UPDATE categories SET name = :name, parent_id = :parent_id WHERE id = :id";
     $stmt = $db->prepare($sql);
     return $stmt->execute([
         'id' => $id,
         'name' => $name,
-        'parent_id' => $parent_id;
+        'parent_id' => $parentId
     ]);
 }
